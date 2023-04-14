@@ -22,6 +22,24 @@ import sys
 !wget -P images https://raw.githubusercontent.com/facebookresearch/segment-anything/main/notebooks/images/groceries.jpg        
 !wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
 
+    
+import cv2
+image = cv2.imread('/content/Cigaretee_i_Weapon_Pragati138.jpg')
+image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+
+import sys
+sys.path.append("..")
+from segment_anything import sam_model_registry, SamPredictor
+
+
+sam_checkpoint = "sam_vit_h_4b8939.pth"
+model_type = "vit_h"
+device = "cpu"
+sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+sam.to(device=device)
+predictor = SamPredictor(sam)
+predictor.set_image(image)
 
 def yolov8_detection():
 
