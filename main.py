@@ -49,7 +49,7 @@ def yolov8_detection():
     for result in results:
         boxes = result.boxes  # Boxes object for bbox outputs
     
-    bbox=boxes.xywh.tolist()[0]
+    bbox=boxes.xyxy.tolist()[0]
     return bbox
  
 def show_mask(mask, ax, random_color=False):
