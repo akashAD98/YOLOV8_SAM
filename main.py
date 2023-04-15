@@ -40,13 +40,13 @@ def show_box(box, ax):
 
 
 # Load image
-# image_path = '/content/Cigaretee_i_Weapon_Pragati138.jpg'
+# image_path = '/content/myimg.jpg'
 # image = cv2.imread(image_path)
 # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 
 # Load image
-image_path = '/content/Cigaretee_i_Weapon_Pragati138.jpg'
+image_path = '/content/myimage.jpg'
 image = Image.open(image_path).convert('RGB')
 
 
