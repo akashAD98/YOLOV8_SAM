@@ -34,9 +34,12 @@ python main.py
 
 ### TODO
 
+
 ```
--More flexible code
--Add support for saving annotations in yolo format
+- Doing annotations on multiple images .i.e on folder of images
+- Add support for saving annotations in yolo format
+- Support jsno format for segmentation model trainig
+
 ```
 
 ```
