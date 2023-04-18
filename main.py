@@ -70,7 +70,7 @@ for i, mask in enumerate(masks):
     
     # load the image
     #width, height = image_path.size
-    img = Image.open("/content/Cigaretee_i_Weapon_Pragati137.jpg")
+    img = Image.open(image_path)
     width, height = img.size
 
     # convert mask to numpy array of shape (N,2)
