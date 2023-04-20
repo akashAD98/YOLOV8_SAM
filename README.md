@@ -28,6 +28,10 @@ python main.py
 
 
 ## Results
+
+<img width="387" alt="image" src="https://user-images.githubusercontent.com/62583018/233255080-209dec85-44e7-4460-ae9c-bf53b28374ec.png">
+
+
 <img width="312" alt="image" src="https://user-images.githubusercontent.com/62583018/232183468-d1abeb02-43d0-471a-9fce-e0e40eac69a5.png">
 
 Bounding box: [478, 1280, 182, 76]
