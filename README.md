@@ -37,13 +37,14 @@ Segmentation mask: [631, 1280, 630, 1281, 629, 1281, 628, 1282, 626, 1282, 625, 
 
 
 ```
-- Doing annotations on multiple images .i.e on folder of images
+- Doing annotations on multiple images  - Done
 - Add support for saving annotations in yolo format
 - Support jsno format for segmentation model trainig
 
 ```
 
+### refrence
 ```
-refrence : https://github.com/facebookresearch/segment-anything
+https://github.com/facebookresearch/segment-anything
 https://github.com/ultralytics/ultralytics
 ````
