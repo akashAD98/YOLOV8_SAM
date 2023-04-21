@@ -58,7 +58,7 @@ yolo format = [0 0.529687 0 0.014815 0 0.529167 0 0.015741 0 0.525521 0 0.015741
 
 ```
 - Doing annotations on multiple images  - Done
-- Add support for saving annotations in yolo format
+- Add support for saving annotations in yolo format -Done
 - Support jsno format for segmentation model trainig
 
 ```
