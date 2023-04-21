@@ -20,6 +20,7 @@ import sys
   
   
 
+
 from ultralytics import YOLO
 import numpy as np
 import cv2
@@ -27,21 +28,26 @@ import torch
 from segment_anything import sam_model_registry, SamPredictor
 
 def yolov8_detection(model, image_path):
-
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     results = model(image, stream=True)  # generator of Results objects
 
+    boxes_list = []
+    classes_list = []
     for result in results:
         boxes = result.boxes  # Boxes object for bbox outputs
+        class_id = result.boxes.cls.long().tolist()
+        boxes_list.append(boxes.xyxy.tolist())
+        classes_list.append(class_id)
 
-    bbox = boxes.xyxy.tolist()
-    bbox = [[int(i) for i in box] for box in bbox]
-    return bbox, image
+    bbox = [[int(i) for i in box] for boxes in boxes_list for box in boxes]
+    class_id = [class_id for classes in classes_list for class_id in classes]
+
+    return bbox, class_id, image
 
 
-model = YOLO("yolov8n.pt")
-yolov8_boxex, image = yolov8_detection(model, "/content/0cigar1_3677.jpg")
+model = YOLO("/content/best.pt")
+yolov8_boxex,yolov8_class_id, image = yolov8_detection(model, "/content/two-cigarette.jpg")
 input_boxes = torch.tensor(yolov8_boxex, device=model.device)
 
 sam_checkpoint = "/content/sam_vit_h_4b8939.pth"
@@ -78,20 +84,21 @@ for i, mask in enumerate(masks):
     segmentation = largest_contour.flatten().tolist()
 
     # Write bounding boxes to file in YOLO format
-    with open("BBOX_yolo3677.txt", "a") as f:
-        for contour in contours:
-            # Get the bounding box coordinates of the contour
-            x, y, w, h = cv2.boundingRect(contour)
-            # Convert the coordinates to YOLO format and write to file
-            f.write(
-                "0 {:.6f} {:.6f} {:.6f} {:.6f}\n".format(
-                    (x + w / 2) / image.shape[1],
-                    (y + h / 2) / image.shape[0],
-                    w / image.shape[1],
-                    h / image.shape[0],
-                )
+# Write bounding boxes to file in YOLO format
+    with open("BBOX_Two_cigretee.txt", "a") as f:
+        # Get the bounding box coordinates of the largest contour
+        x, y, w, h = bbox
+        # Convert the coordinates to YOLO format and write to file
+        f.write(
+            "{} {:.6f} {:.6f} {:.6f} {:.6f}\n".format(yolov8_class_id[i],
+                (x + w / 2) / image.shape[1],
+                (y + h / 2) / image.shape[0],
+                w / image.shape[1],
+                h / image.shape[0],
             )
-            f.write("\n")
+        )
+        f.write("\n")
+
     mask = segmentation
 
     # load the image
@@ -113,11 +120,11 @@ for i, mask in enumerate(masks):
     # yolo = np.concatenate([bbox_norm, mask_norm.reshape(-1)])
     yolo = mask_norm.reshape(-1)
 
-    # compute the bounding box
-    # write the yolo values to a text file
-    with open("yolomask_format3677.txt", "a") as f:
+    #compute the bounding box
+    #write the yolo values to a text file
+    with open("yolomask_two_cigretee.txt", "a") as f:
         for val in yolo:
-            f.write("0 {:.6f} ".format(val))
+            f.write("{} {:.6f}".format(yolov8_class_id[i],val))
         f.write("\n")
 
     print("Bounding box:", bbox)
