@@ -18,8 +18,8 @@ import sys
         
 !wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
   
-  
-
+# get coo80 yolov8 weight from here
+# https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8s.pt
 
 from ultralytics import YOLO
 import numpy as np
@@ -85,7 +85,7 @@ for i, mask in enumerate(masks):
 
     # Write bounding boxes to file in YOLO format
 # Write bounding boxes to file in YOLO format
-    with open("BBOX_Two_cigretee.txt", "a") as f:
+    with open("bounding_box_image1.txt", "a") as f:
         # Get the bounding box coordinates of the largest contour
         x, y, w, h = bbox
         # Convert the coordinates to YOLO format and write to file
@@ -122,7 +122,7 @@ for i, mask in enumerate(masks):
 
     #compute the bounding box
     #write the yolo values to a text file
-    with open("yolomask_two_cigretee.txt", "a") as f:
+    with open("yolo_mask_image1.txt", "a") as f:
         for val in yolo:
             f.write("{} {:.6f}".format(yolov8_class_id[i],val))
         f.write("\n")
