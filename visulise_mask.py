@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 
+# pass the image & genrated mask.txt file
+
 image = cv2.imread("image.jpg")
 h, w = image.shape[:2]
 with open("/content/yolomask_forma.txt") as f:
