@@ -20,15 +20,17 @@ pip install 'git+https://github.com/facebookresearch/segment-anything.git'
  !wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
 ```
 
-## Test on single Image
-
-```
-python main.py
-```
-## test on single objects
+## Test on image
 
 ```
 python detect_multiple_object_SAM.py
+```
+
+
+## visulise the results
+
+```
+python3 visulise_mask.py
 ```
 
 ## Results
