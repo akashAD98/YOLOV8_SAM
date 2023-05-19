@@ -25,7 +25,7 @@ pip install 'git+https://github.com/facebookresearch/segment-anything.git'
 ```
 python main.py
 ```
-## test on sinle objects
+## test on single objects
 
 ```
 python detect_multiple_object_SAM.py
