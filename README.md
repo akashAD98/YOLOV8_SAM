@@ -8,7 +8,7 @@ Use yolov8 & SAM model to get segmention for custom model
 # installation
 
 ```
-pip install ultrlytics
+pip install ultralytics
 pip install 'git+https://github.com/facebookresearch/segment-anything.git'
 
 ```
